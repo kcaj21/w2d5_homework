@@ -45,8 +45,12 @@ class TestRoom(unittest.TestCase):
     def test_full_service_MVP(self):
         self.room_1.checkin_guest(self.guest_1)
         self.room_1.add_song(self.song_1)
+        self.assertEqual(1, self.room_1.guest_count())
+        self.assertEqual(1, self.room_1.song_count())
         self.room_1.remove_song(self.song_1)
         self.room_1.checkout_guest(self.guest_1)
+        self.assertEqual(0, self.room_1.guest_count())
+        self.assertEqual(0, self.room_1.song_count())
 
     def test_sufficient_funds__true_if_enough(self):
           self.assertEqual(True, self.guest_1.sufficient_funds(self.room_1))
